@@ -14,10 +14,10 @@ import {
 } from "@mui/material/";
 
 function App() {
-  const [frontGear, setFrontGear] = useState(0);
-  const [rearGear, setRearGear] = useState(0);
-  const [cadance, setCadance] = useState(0);
-  const [tireCircumfence, setTireCircumference] = useState(0);
+  const [frontGear, setFrontGear] = useState(42);
+  const [rearGear, setRearGear] = useState(12);
+  const [cadance, setCadance] = useState(80);
+  const [tireCircumfence, setTireCircumference] = useState(2070);
   const [resultskph, setResultskph] = useState(0);
   const [resultsmph, setResultsmph] = useState(0);
 
@@ -63,6 +63,20 @@ function App() {
         0.6213711922
       ).toFixed(2)
     );
+  };
+
+  const clearHandler = () => {
+    console.log(
+      "Clear Handler",
+      frontGear,
+      rearGear,
+      cadance,
+      tireCircumfence
+    );
+    const gearRatio = frontGear / rearGear;
+    console.log("Gear Ratio", gearRatio);
+    setResultskph(0)
+    setResultsmph(0)
   };
 
   function valuetext(value) {
@@ -202,8 +216,15 @@ function App() {
           >
             Submit
           </Button>
-          <Box sx={{ marginLeft: 10 }}>{resultskph} kph</Box>
-          <Box sx={{ marginLeft: 10 }}>{resultsmph} mph</Box>
+          <Box sx={{ marginLeft: 5 }}>{resultskph} kph</Box>
+          <Box sx={{ marginLeft: 5 }}>{resultsmph} mph</Box>
+          <Button
+            variant="contained"
+            sx={{ bgcolor: "black", marginLeft: 5 }}
+            onClick={clearHandler}
+          >
+            Clear
+          </Button>
         </Toolbar>
       </AppBar>
     </Container>
